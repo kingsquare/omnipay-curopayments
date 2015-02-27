@@ -1,0 +1,28 @@
+{
+    "name": "kingsquare/omnipay-curopayments",
+    "type": "library",
+    "description": "Curopayments driver for the Omnipay payment processing library",
+    "keywords": [
+        "curopayments",
+        "gateway",
+        "merchant",
+        "omnipay",
+        "pay",
+        "payment"
+    ],
+    "homepage": "https://github.com/kingsquare/omnipay-curopayments",
+    "license": "MIT",
+    "authors": [{
+        "name": "Robin Speekenbrink",
+        "email": "robin.speekenbrink@kingsquare.nl"
+    }],
+    "autoload": {
+        "psr-4": { "Omnipay\\Curopayments\\" : "src"}
+    },
+    "require": {
+        "omnipay/common": "~2.0"
+    },
+    "require-dev": {
+        "omnipay/tests": "~2.0"
+    }
+}
