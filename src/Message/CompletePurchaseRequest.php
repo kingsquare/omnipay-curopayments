@@ -9,20 +9,12 @@ use Omnipay\Common\Exception\InvalidRequestException;
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
+	/**
+	 * @inheritdoc
+	 */
     public function getData()
     {
-        $this->validate('siteId', 'hash', 'amount');
-
-        $data = $this->httpRequest->request->all();
-        $signature = isset($data['hash']) ? $data['hash'] : null;
-        if ($this->generateSignature($data) !== $signature) {
-            throw new InvalidRequestException('Incorrect signature');
-        }
-        return $data;
-    }
-
-	public function getData2() {
-		$this->validate('siteId', 'hash', 'amount');
+		$this->validate('siteId', 'hashKey', 'amount');
 
 		$postedData = $this->httpRequest->request->all();
 		$verifyHash = $this->generateVerificationSignature($postedData);
@@ -31,8 +23,11 @@ class CompletePurchaseRequest extends AbstractRequest
 			throw new InvalidRequestException('Incorrect signature');
 		}
 		return $postedData;
-	}
+    }
 
+	/**
+	 * @inheritdoc
+	 */
     public function sendData($data)
     {
         return $this->response = new CompletePurchaseResponse($this, $data);

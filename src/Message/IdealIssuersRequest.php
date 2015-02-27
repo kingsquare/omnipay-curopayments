@@ -7,7 +7,7 @@ namespace Omnipay\Curopayments\Message;
  */
 class IdealIssuersRequest extends AbstractRequest
 {
-	protected $endpoint = 'https://gateway.cardgateplus.com/cache/idealDirectoryCUROPayments.xml';
+	public $endpoint = 'https://gateway.cardgateplus.com/cache/idealDirectoryCUROPayments.xml';
 
 	/**
 	 * {@inheritdoc}

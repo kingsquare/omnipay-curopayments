@@ -6,7 +6,7 @@ use Omnipay\Common\Message\AbstractResponse;
 use Omnipay\Common\Message\FetchIssuersResponseInterface;
 use Omnipay\Common\Issuer;
 
-class FetchIssuersResponse extends AbstractResponse implements FetchIssuersResponseInterface
+class IdealIssuersResponse extends AbstractResponse implements FetchIssuersResponseInterface
 {
 	/**
 	 * {@inheritdoc}

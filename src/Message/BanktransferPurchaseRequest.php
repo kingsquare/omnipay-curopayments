@@ -7,6 +7,9 @@ namespace Omnipay\Curopayments\Message;
  */
 class BanktransferPurchaseRequest extends AbstractRequest
 {
+	/**
+	 * @inheritdoc
+	 */
     public function getData()
     {
         $data = parent::getData();
