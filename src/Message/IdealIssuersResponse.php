@@ -24,7 +24,7 @@ class IdealIssuersResponse extends AbstractResponse implements FetchIssuersRespo
         $issuers = array();
         if (isset($this->data)) {
             foreach ($this->data as $issuer) {
-                $issuers[] = new Issuer((string) $issuer->id, (string) $issuer->name);
+                $issuers[] = new Issuer((string) $issuer['id'], (string) $issuer['name']);
             }
         }
 

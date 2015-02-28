@@ -11,8 +11,9 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
     {
         return array(
             'siteId' => '',
-            'hashKey' => '',
-            'testMode' => false,
+            'secretKey' => '',
+            'ref' => '',
+            'test' => false,
         );
     }
 
@@ -26,14 +27,24 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
         return $this->setParameter('siteId', $value);
     }
 
-    public function getHashKey()
+    public function getSecretKey()
     {
-        return $this->getParameter('hashKey');
+        return $this->getParameter('secretKey');
     }
 
-    public function setHashKey($value)
+    public function setSecretKey($value)
     {
-        return $this->setParameter('hashKey', $value);
+        return $this->setParameter('secretKey', $value);
+    }
+
+    public function getRef()
+    {
+        return $this->getParameter('ref');
+    }
+
+    public function setRef($value)
+    {
+        return $this->setParameter('ref', $value);
     }
 
     public function purchase(array $parameters = array())
@@ -42,8 +53,7 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
 
         return $this->createRequest(
             '\Omnipay\Curopayments\Message\\' . $gatewayType . 'PurchaseRequest',
-            $parameters)
-            ->send();
+            $parameters);
     }
 
     public function completePurchase(array $parameters = array())

@@ -14,6 +14,7 @@ class IdealPurchaseRequest extends AbstractRequest
     {
         $data = parent::getData();
         $data['option'] = 'ideal';
+        $data['suboption'] = $this->getIssuer();
 
         return $data;
     }

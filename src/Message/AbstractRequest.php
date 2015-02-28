@@ -20,14 +20,14 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('siteId', $value);
     }
 
-    public function getHashKey()
+    public function getSecretKey()
     {
-        return $this->getParameter('hashKey');
+        return $this->getParameter('secretKey');
     }
 
-    public function setHashKey($value)
+    public function setSecretKey($value)
     {
-        return $this->setParameter('hashKey', $value);
+        return $this->setParameter('secretKey', $value);
     }
 
     public function getRef()
@@ -45,16 +45,20 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function getData()
     {
-        $this->validate('siteId', 'hash', 'amount', 'ref');
+        $this->validate('siteId', 'secretKey', 'amount', 'ref');
 
         $data = array();
-//        $data['Brq_websitekey'] = $this->getWebsiteKey();
-//        $data['Brq_amount'] = $this->getAmount();
-//        $data['Brq_currency'] = $this->getCurrency();
-//        $data['Brq_invoicenumber'] = $this->getTransactionId();
-//        $data['Brq_description'] = $this->getDescription();
-//        $data['Brq_return'] = $this->getReturnUrl();
-//        $data['Brq_returncancel'] = $this->getCancelUrl();
+        $data['ref'] = $this->getRef();
+        $data['language'] = $this->getLanguage();
+        $data['siteid'] = $this->getSiteId();
+        $data['amount'] = $this->getAmountInteger();
+        $data['currency'] = $this->getCurrency();
+        $data['description'] = $this->getDescription();
+        $data['return_url'] = $this->getReturnUrl();
+        $data['return_url_failed'] = $this->getReturnUrlFailed();
+        $data['language'] = $this->getLanguage();
+        $data['ip_address'] = $this->getClientIp();
+        $data['test'] = $this->getTestMode();
 
         return $data;
     }
@@ -64,11 +68,12 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function generateSignature($data)
     {
-        return md5(($this->getTestMode() ? 'TEST' : '')
-                . $this->getSiteId()
-                . $this->getAmount()
-                . $this->getRef()
-                . $this->getHashKey()
+        return md5(
+            ($this->getTestMode() ? 'TEST' : '')
+            . $this->getSiteId()
+            . $this->getAmount()
+            . $this->getRef()
+            . $this->getSecretKey()
         );
     }
 
@@ -88,7 +93,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             $data['amount'] .
             $data['ref'] .
             $data['status'] .
-            $this->getHashKey()
+            $this->getSecretKey()
         );
     }
 
