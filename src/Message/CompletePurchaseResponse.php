@@ -11,7 +11,8 @@ use Omnipay\Common\Message\RequestInterface;
 class CompletePurchaseResponse extends AbstractResponse
 {
     /**
-     * Transaction pending/in process. The transaction was created in the Card Gate system but there has not yet been an update of the payment method.
+     * Transaction pending/in process. The transaction was created in the Card Gate system but there has not yet been
+     * an update of the payment method.
      */
     const PENDING = 0;
 

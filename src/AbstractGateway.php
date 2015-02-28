@@ -10,9 +10,9 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
     public function getDefaultParameters()
     {
         return array(
-                'siteId' => '',
-                'hashKey' => '',
-                'testMode' => false,
+            'siteId' => '',
+            'hashKey' => '',
+            'testMode' => false,
         );
     }
 
@@ -40,8 +40,10 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
     {
         $gatewayType = str_replace('Omnipay\Curopayments\\', '', substr(get_class($this), 0, -7));
 
-        return $this->createRequest('\Omnipay\Curopayments\Message\\' . $gatewayType . 'PurchaseRequest',
-                $parameters)->send();
+        return $this->createRequest(
+            '\Omnipay\Curopayments\Message\\' . $gatewayType . 'PurchaseRequest',
+            $parameters)
+            ->send();
     }
 
     public function completePurchase(array $parameters = array())

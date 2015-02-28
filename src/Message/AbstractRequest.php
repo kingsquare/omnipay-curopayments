@@ -64,11 +64,11 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
      */
     public function generateSignature($data)
     {
-        return md5(($this->getTestMode() ? 'TEST' : '') .
-                $this->getSiteId() .
-                $this->getAmount() .
-                $this->getRef() .
-                $this->getHashKey()
+        return md5(($this->getTestMode() ? 'TEST' : '')
+                . $this->getSiteId()
+                . $this->getAmount()
+                . $this->getRef()
+                . $this->getHashKey()
         );
     }
 
@@ -82,13 +82,13 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     public function generateVerificationSignature($data)
     {
         return md5(
-                (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
-                $data['transactionid'] .
-                $data['currency'] .
-                $data['amount'] .
-                $data['ref'] .
-                $data['status'] .
-                $this->getHashKey()
+            (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
+            $data['transactionid'] .
+            $data['currency'] .
+            $data['amount'] .
+            $data['ref'] .
+            $data['status'] .
+            $this->getHashKey()
         );
     }
 
