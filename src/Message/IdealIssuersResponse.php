@@ -13,7 +13,7 @@ class IdealIssuersResponse extends AbstractResponse implements FetchIssuersRespo
      */
     public function isSuccessful()
     {
-        return !empty($this->data->directory->Country);
+        return !empty($this->data);
     }
 
     /**
@@ -22,9 +22,9 @@ class IdealIssuersResponse extends AbstractResponse implements FetchIssuersRespo
     public function getIssuers()
     {
         $issuers = array();
-        if (isset($this->data->directory->Country)) {
-            foreach ($this->data->directory->Country->issuer as $issuer) {
-                $issuers[] = new Issuer((string) $issuer->issuerID, (string) $issuer->issuerName);
+        if (isset($this->data)) {
+            foreach ($this->data as $issuer) {
+                $issuers[] = new Issuer((string) $issuer->id, (string) $issuer->name);
             }
         }
 

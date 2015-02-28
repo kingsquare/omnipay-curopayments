@@ -7,7 +7,7 @@ namespace Omnipay\Curopayments\Message;
  */
 class IdealIssuersRequest extends AbstractRequest
 {
-    public $endpoint = 'https://gateway.cardgateplus.com/cache/idealDirectoryCUROPayments.xml';
+    public $endpoint = 'https://gateway.cardgateplus.com/cache/idealDirectoryCUROPayments.json';
 
     /**
      * {@inheritdoc}
@@ -25,6 +25,6 @@ class IdealIssuersRequest extends AbstractRequest
         $endpoint = $this->endpoint;
         $httpResponse = $this->httpClient->get($endpoint)->send();
 
-        return $this->response = new IdealIssuersResponse($this, $httpResponse->xml());
+        return $this->response = new IdealIssuersResponse($this, $httpResponse->json());
     }
 }
