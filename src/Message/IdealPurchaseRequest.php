@@ -7,9 +7,9 @@ namespace Omnipay\Curopayments\Message;
  */
 class IdealPurchaseRequest extends AbstractRequest
 {
-	/**
-	 * {@inheritdoc}
-	 */
+    /**
+     * {@inheritdoc}
+     */
     public function getData()
     {
         $data = parent::getData();

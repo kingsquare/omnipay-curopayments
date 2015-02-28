@@ -7,8 +7,8 @@ namespace Omnipay\Curopayments;
  */
 class SofortBankingGateway extends AbstractGateway
 {
-	public function getName()
-	{
-		return 'Curopayments Sofort Banking';
-	}
+    public function getName()
+    {
+        return 'Curopayments Sofort Banking';
+    }
 }

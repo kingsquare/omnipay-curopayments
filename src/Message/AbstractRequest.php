@@ -40,9 +40,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('ref', $value);
     }
 
-	/**
-	 * @inheritdoc
-	 */
+    /**
+     * @inheritdoc
+     */
     public function getData()
     {
         $this->validate('siteId', 'hash', 'amount', 'ref');
@@ -59,41 +59,42 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $data;
     }
 
-	/**
-	 * Generate a signature for outoing requests
-	 */
+    /**
+     * Generate a signature for outoing requests
+     */
     public function generateSignature($data)
     {
-		return md5( ($this->getTestMode() ? 'TEST':'') .
-				$this->getSiteId() .
-				$this->getAmount() .
-				$this->getRef() .
-				$this->getHashKey()
-		);
+        return md5(($this->getTestMode() ? 'TEST' : '') .
+                $this->getSiteId() .
+                $this->getAmount() .
+                $this->getRef() .
+                $this->getHashKey()
+        );
     }
 
-	/**
-	 * Verify the data came from Curopaymentss
-	 * @param $data
-	 *
-	 * @return string
-	 */
+    /**
+     * Verify the data came from Curopaymentss
+     *
+     * @param $data
+     *
+     * @return string
+     */
     public function generateVerificationSignature($data)
     {
-		return md5(
-				(($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
-				$data['transactionid'] .
-				$data['currency'] .
-				$data['amount'] .
-				$data['ref'] .
-				$data['status'] .
-				$this->getHashKey()
-		);
+        return md5(
+                (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
+                $data['transactionid'] .
+                $data['currency'] .
+                $data['amount'] .
+                $data['ref'] .
+                $data['status'] .
+                $this->getHashKey()
+        );
     }
 
-	/**
-	 * @inheritdoc
-	 */
+    /**
+     * @inheritdoc
+     */
     public function sendData($data)
     {
         $data['hash'] = $this->generateSignature($data);
@@ -101,9 +102,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->response = new PurchaseResponse($this, $data);
     }
 
-	/**
-	 * @inheritdoc
-	 */
+    /**
+     * @inheritdoc
+     */
     public function getEndpoint()
     {
         return $this->endpoint;

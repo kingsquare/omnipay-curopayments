@@ -7,8 +7,8 @@ namespace Omnipay\Curopayments;
  */
 class BanktransferGateway extends AbstractGateway
 {
-	public function getName()
-	{
-		return 'Curopayments Banktransfer';
-	}
+    public function getName()
+    {
+        return 'Curopayments Banktransfer';
+    }
 }

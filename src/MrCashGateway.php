@@ -7,8 +7,8 @@ namespace Omnipay\Curopayments;
  */
 class MrCashGateway extends AbstractGateway
 {
-	public function getName()
-	{
-		return 'Curopayments MisterCash';
-	}
+    public function getName()
+    {
+        return 'Curopayments MisterCash';
+    }
 }

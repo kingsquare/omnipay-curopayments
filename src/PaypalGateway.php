@@ -7,8 +7,8 @@ namespace Omnipay\Curopayments;
  */
 class PaypalGateway extends AbstractGateway
 {
-	public function getName()
-	{
-		return 'Curopayments Paypal';
-	}
+    public function getName()
+    {
+        return 'Curopayments Paypal';
+    }
 }

@@ -7,8 +7,8 @@ namespace Omnipay\Curopayments;
  */
 class SepaDirectDebitGateway extends AbstractGateway
 {
-	public function getName()
-	{
-		return 'Curopayments SEPA Direct Debit';
-	}
+    public function getName()
+    {
+        return 'Curopayments SEPA Direct Debit';
+    }
 }
