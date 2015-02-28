@@ -13,7 +13,7 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
             'siteId' => '',
             'secretKey' => '',
             'ref' => '',
-            'test' => false,
+            'testMode' => false,
         );
     }
 

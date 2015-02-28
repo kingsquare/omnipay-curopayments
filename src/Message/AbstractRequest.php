@@ -40,6 +40,16 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->setParameter('ref', $value);
     }
 
+    public function getLanguage()
+    {
+        return $this->getParameter('language');
+    }
+
+    public function setLanguage($value)
+    {
+        return $this->setParameter('language', $value);
+    }
+
     /**
      * @inheritdoc
      */
@@ -55,10 +65,10 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         $data['currency'] = $this->getCurrency();
         $data['description'] = $this->getDescription();
         $data['return_url'] = $this->getReturnUrl();
-        $data['return_url_failed'] = $this->getReturnUrlFailed();
+        $data['return_url_failed'] = $this->getReturnUrl();
         $data['language'] = $this->getLanguage();
         $data['ip_address'] = $this->getClientIp();
-        $data['test'] = $this->getTestMode();
+        $data['test'] = (int) $this->getTestMode();
 
         return $data;
     }
@@ -71,10 +81,9 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return md5(
             ($this->getTestMode() ? 'TEST' : '')
             . $this->getSiteId()
-            . $this->getAmount()
+            . $this->getAmountInteger()
             . $this->getRef()
-            . $this->getSecretKey()
-        );
+            . $this->getSecretKey());
     }
 
     /**
