@@ -1,5 +1,9 @@
 # Omnipay: Curopayments
 
+## Attention
+
+This is still very much in development! NOT READY FOR ACTUAL USE!
+
 **Curopayments driver for the Omnipay PHP payment processing library**
 
 [![Build Status](https://travis-ci.org/kingsquare/omnipay-curopayments.png?branch=master)](https://travis-ci.org/kingsquare/omnipay-curopayments)
