@@ -10,7 +10,7 @@ class GiropayGatewayTest extends GatewayTestCase
 	{
 		parent::setUp();
 
-		$this->gateway = new BanktransferGateway($this->getHttpClient(), $this->getHttpRequest());
+		$this->gateway = new GiropayGatewayTest($this->getHttpClient(), $this->getHttpRequest());
 	}
 
 	public function testPurchase()

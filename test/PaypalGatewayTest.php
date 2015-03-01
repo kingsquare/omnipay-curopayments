@@ -10,7 +10,7 @@ class PaypalGatewayTest extends GatewayTestCase
 	{
 		parent::setUp();
 
-		$this->gateway = new BanktransferGateway($this->getHttpClient(), $this->getHttpRequest());
+		$this->gateway = new PaypalGateway($this->getHttpClient(), $this->getHttpRequest());
 	}
 
 	public function testPurchase()

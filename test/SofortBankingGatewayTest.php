@@ -10,7 +10,7 @@ class SofortBankingGatewayTest extends GatewayTestCase
 	{
 		parent::setUp();
 
-		$this->gateway = new BanktransferGateway($this->getHttpClient(), $this->getHttpRequest());
+		$this->gateway = new SofortBankingGateway($this->getHttpClient(), $this->getHttpRequest());
 	}
 
 	public function testPurchase()

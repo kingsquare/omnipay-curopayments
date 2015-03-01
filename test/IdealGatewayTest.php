@@ -26,6 +26,6 @@ class IdealGatewayTest extends GatewayTestCase
 	}
 
 	public function testFetchIssuers() {
-		$this->markAsIncomplete('STill to do');
+		$this->markTestIncomplete('STill to do');
 	}
 }
