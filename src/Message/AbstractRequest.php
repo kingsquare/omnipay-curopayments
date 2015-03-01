@@ -83,7 +83,8 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             . $this->getSiteId()
             . $this->getAmountInteger()
             . $this->getRef()
-            . $this->getSecretKey());
+            . $this->getSecretKey()
+        );
     }
 
     /**

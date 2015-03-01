@@ -53,7 +53,8 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
 
         return $this->createRequest(
             '\Omnipay\Curopayments\Message\\' . $gatewayType . 'PurchaseRequest',
-            $parameters);
+            $parameters
+        );
     }
 
     public function completePurchase(array $parameters = array())
