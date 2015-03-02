@@ -2,7 +2,7 @@
 
 namespace Omnipay\Curopayments\Message;
 
-use Omnipay\Common\Exception\InvalidRequestException;
+use \Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Curopayments Complete Purchase Request
@@ -36,13 +36,13 @@ class CompletePurchaseRequest extends AbstractRequest
     public function generateVerificationSignature($data)
     {
         return md5(
-                (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
-                $data['transactionid'] .
-                $data['currency'] .
-                $data['amount'] .
-                $data['ref'] .
-                $data['status'] .
-                $this->getSecretKey()
+            (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
+            $data['transactionid'] .
+            $data['currency'] .
+            $data['amount'] .
+            $data['ref'] .
+            $data['status'] .
+            $this->getSecretKey()
         );
     }
 

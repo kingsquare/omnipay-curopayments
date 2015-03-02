@@ -2,7 +2,7 @@
 
 namespace Omnipay\Curopayments;
 
-use\Omnipay\Common\AbstractGateway as OmnipayGateway;
+use Omnipay\Common\AbstractGateway as OmnipayGateway;
 
 /**
  * Curopayments Abastract Gateway
