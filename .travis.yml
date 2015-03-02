@@ -1,5 +1,10 @@
 language: php
 
+matrix:
+  allow_failures:
+    - php: 7
+  fast_finish: true
+
 php:
   - 5.4
   - 5.5
