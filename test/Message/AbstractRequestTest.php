@@ -18,6 +18,7 @@ class AbstractRequestTest extends TestCase {
             'ref' => 'test',
             'testMode' => true,
             'returnUrl' => 'https://www.example.com/return',
+            'returnUrlFailed' => 'https://www.example.com/return_failed',
         ]);
 	}
 
@@ -30,7 +31,7 @@ class AbstractRequestTest extends TestCase {
 		$this->assertSame('EUR', $data['currency']);
 		$this->assertSame('test', $data['ref']);
 		$this->assertSame('https://www.example.com/return', $data['return_url']);
-		$this->assertSame('https://www.example.com/return', $data['return_url_failed']);
+		$this->assertSame('https://www.example.com/return_failed', $data['return_url_failed']);
 	}
 
 	public function testGenerateSignature()
@@ -42,5 +43,20 @@ class AbstractRequestTest extends TestCase {
 	public function testGetEndpoint()
 	{
 		$this->assertStringStartsWith('https://gateway.cardgateplus.com/', $this->request->getEndpoint());
+
 	}
+
+    public function testReturnUrlFailedFallsBackToReturnUrl() {
+        $request = m::mock('\Omnipay\Curopayments\Message\AbstractRequest')->makePartial();
+        $request->initialize([
+                'secretKey' => 'secret',
+                'siteId' => 'web',
+                'currency' => 'EUR',
+                'amount' => '12.00',
+                'ref' => 'test',
+                'testMode' => true,
+                'returnUrl' => 'https://www.example.com/return',
+        ]);
+        $this->assertSame('https://www.example.com/return', $request->getReturnUrlFailed());
+    }
 }

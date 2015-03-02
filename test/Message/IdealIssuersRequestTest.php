@@ -6,23 +6,20 @@ use Omnipay\Tests\TestCase;
 
 class IdealIssuersRequestTest extends TestCase
 {
-    public function setUp()
-    {
-        $this->request = \Mockery::mock('\Omnipay\Curopayments\Message\IdealIssuersRequest')->makePartial();
-    }
-
     public function testGetData()
     {
-        $this->assertNull($this->request->getData());
+        $request = new IdealIssuersRequest($this->getHttpClient(), $this->getHttpRequest());
+        $this->assertNull($request->getData());
     }
 
     public function testSendData()
     {
+        $request = \Mockery::mock('\Omnipay\Curopayments\Message\IdealIssuersRequest')->makePartial();
         $response = \Mockery::mock('\Omnipay\Curopayments\Message\IdealIssuersResponse');
 
-        $this->request->shouldReceive('getData')->once()->andReturn([]);
-        $this->request->shouldReceive('sendData')->once()->with([])->andReturn($response);
+        $request->shouldReceive('getData')->once()->andReturn([]);
+        $request->shouldReceive('sendData')->once()->with([])->andReturn($response);
 
-        $this->assertSame($response, $this->request->send());
+        $this->assertSame($response, $request->send());
     }
 }

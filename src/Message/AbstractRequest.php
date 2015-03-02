@@ -14,6 +14,16 @@ abstract class AbstractRequest extends OmnipayRequest
      */
     public $endpoint = 'https://gateway.cardgateplus.com/';
 
+    private $returnUrlFailed = '';
+
+    public function setReturnUrlFailed($value) {
+        $this->returnUrlFailed = $value;
+    }
+
+    public function getReturnUrlFailed() {
+        return $this->returnUrlFailed ?: $this->getReturnUrl();
+    }
+
     public function getSiteId()
     {
         return $this->getParameter('siteId');
@@ -69,7 +79,7 @@ abstract class AbstractRequest extends OmnipayRequest
         $data['currency'] = $this->getCurrency();
         $data['description'] = $this->getDescription();
         $data['return_url'] = $this->getReturnUrl();
-        $data['return_url_failed'] = $this->getReturnUrl();
+        $data['return_url_failed'] = $this->getReturnUrlFailed();
         $data['language'] = $this->getLanguage();
         $data['ip_address'] = $this->getClientIp();
         $data['test'] = (int) $this->getTestMode();

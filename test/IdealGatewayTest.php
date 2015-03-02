@@ -26,6 +26,8 @@ class IdealGatewayTest extends GatewayTestCase
 	}
 
 	public function testFetchIssuers() {
-		$this->markTestIncomplete('STill to do');
+        $issuerRequest = $this->gateway->fetchIssuers();
+
+        $this->assertInstanceOf('Omnipay\Curopayments\Message\IdealIssuersRequest', $issuerRequest);
 	}
 }
