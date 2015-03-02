@@ -32,9 +32,14 @@ class CompletePurchaseRequest extends AbstractRequest
      * @param $data
      *
      * @return string
+     * @throws InvalidRequestException
      */
     public function generateVerificationSignature($data)
     {
+        if (empty($data)) {
+            throw new InvalidRequestException('Missing data');
+        }
+
         return md5(
             (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
             $data['transactionid'] .
