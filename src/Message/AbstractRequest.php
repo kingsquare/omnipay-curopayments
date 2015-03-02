@@ -16,11 +16,13 @@ abstract class AbstractRequest extends OmnipayRequest
 
     private $returnUrlFailed = '';
 
-    public function setReturnUrlFailed($value) {
+    public function setReturnUrlFailed($value)
+    {
         $this->returnUrlFailed = $value;
     }
 
-    public function getReturnUrlFailed() {
+    public function getReturnUrlFailed()
+    {
         return $this->returnUrlFailed ?: $this->getReturnUrl();
     }
 
