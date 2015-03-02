@@ -2,19 +2,21 @@
 
 namespace Omnipay\Curopayments;
 
+use\Omnipay\Common\AbstractGateway as OmnipayGateway;
+
 /**
  * Curopayments Abastract Gateway
  */
-abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
+abstract class AbstractGateway extends OmnipayGateway
 {
     public function getDefaultParameters()
     {
-        return array(
+        return [
             'siteId' => '',
             'secretKey' => '',
             'ref' => '',
             'testMode' => false,
-        );
+        ];
     }
 
     public function getSiteId()
@@ -47,7 +49,7 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
         return $this->setParameter('ref', $value);
     }
 
-    public function purchase(array $parameters = array())
+    public function purchase(array $parameters = [])
     {
         $gatewayType = str_replace('Omnipay\Curopayments\\', '', substr(get_class($this), 0, -7));
 
@@ -57,7 +59,7 @@ abstract class AbstractGateway extends \Omnipay\Common\AbstractGateway
         );
     }
 
-    public function completePurchase(array $parameters = array())
+    public function completePurchase(array $parameters = [])
     {
         return $this->createRequest('\Omnipay\Curopayments\Message\CompletePurchaseRequest', $parameters);
     }

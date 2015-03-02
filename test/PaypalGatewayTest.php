@@ -15,7 +15,7 @@ class PaypalGatewayTest extends GatewayTestCase
 
 	public function testPurchase()
 	{
-		$request = $this->gateway->purchase(array('amount' => '10.00'));
+		$request = $this->gateway->purchase(['amount' => '10.00']);
 
 		$this->assertInstanceOf('Omnipay\Curopayments\Message\PaypalPurchaseRequest', $request);
 		$this->assertSame('10.00', $request->getAmount());

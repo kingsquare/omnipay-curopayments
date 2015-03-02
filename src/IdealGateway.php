@@ -22,7 +22,7 @@ class IdealGateway extends AbstractGateway
      *
      * @return \Omnipay\Curopayments\Message\idealIssuersRequest
      */
-    public function fetchIssuers(array $parameters = array())
+    public function fetchIssuers(array $parameters = [])
     {
         return $this->createRequest('Omnipay\Curopayments\Message\IdealIssuersRequest', $parameters);
     }

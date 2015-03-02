@@ -128,7 +128,7 @@ class CompletePurchaseResponse extends AbstractResponse
             return (string) $this->data['cgpstatusid'];
         }
 
-        return '0';
+        return null;
     }
 
     /**
@@ -140,7 +140,7 @@ class CompletePurchaseResponse extends AbstractResponse
             return $this->data['cgpstatus'];
         }
 
-        return '';
+        return null;
     }
 
     /**
@@ -152,6 +152,6 @@ class CompletePurchaseResponse extends AbstractResponse
             return $this->data['cgpref'];
         }
 
-        return '';
+        return null;
     }
 }

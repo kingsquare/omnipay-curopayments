@@ -8,26 +8,19 @@ use Omnipay\Common\Issuer;
 
 class IdealIssuersResponse extends AbstractResponse implements FetchIssuersResponseInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function isSuccessful()
     {
         return !empty($this->data);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getIssuers()
     {
-        $issuers = array();
+        $issuers = [];
         if (isset($this->data)) {
             foreach ($this->data as $issuer) {
                 $issuers[] = new Issuer((string) $issuer['id'], (string) $issuer['name']);
             }
         }
-
         return $issuers;
     }
 }

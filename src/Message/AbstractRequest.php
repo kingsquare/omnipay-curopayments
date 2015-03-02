@@ -2,13 +2,17 @@
 
 namespace Omnipay\Curopayments\Message;
 
+use Omnipay\Common\Message\AbstractRequest as OmnipayRequest;
+
 /**
  * Curopayments Abstract Request
  */
-abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
+abstract class AbstractRequest extends OmnipayRequest
 {
+    /**
+     * @var string
+     */
     public $endpoint = 'https://gateway.cardgateplus.com/';
-
 
     public function getSiteId()
     {
@@ -57,7 +61,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     {
         $this->validate('siteId', 'secretKey', 'amount', 'ref');
 
-        $data = array();
+        $data = [];
         $data['ref'] = $this->getRef();
         $data['language'] = $this->getLanguage();
         $data['siteid'] = $this->getSiteId();
@@ -76,7 +80,7 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
     /**
      * Generate a signature for outoing requests
      */
-    public function generateSignature($data)
+    public function generateSignature()
     {
         return md5(
             ($this->getTestMode() ? 'TEST' : '')
@@ -84,26 +88,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
             . $this->getAmountInteger()
             . $this->getRef()
             . $this->getSecretKey()
-        );
-    }
-
-    /**
-     * Verify the data came from Curopaymentss
-     *
-     * @param $data
-     *
-     * @return string
-     */
-    public function generateVerificationSignature($data)
-    {
-        return md5(
-            (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
-            $data['transactionid'] .
-            $data['currency'] .
-            $data['amount'] .
-            $data['ref'] .
-            $data['status'] .
-            $this->getSecretKey()
         );
     }
 
@@ -117,9 +101,6 @@ abstract class AbstractRequest extends \Omnipay\Common\Message\AbstractRequest
         return $this->response = new PurchaseResponse($this, $data);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function getEndpoint()
     {
         return $this->endpoint;

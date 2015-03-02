@@ -10,12 +10,12 @@ class GiropayGatewayTest extends GatewayTestCase
 	{
 		parent::setUp();
 
-		$this->gateway = new GiropayGatewayTest($this->getHttpClient(), $this->getHttpRequest());
+		$this->gateway = new GiropayGateway($this->getHttpClient(), $this->getHttpRequest());
 	}
 
 	public function testPurchase()
 	{
-		$request = $this->gateway->purchase(array('amount' => '10.00'));
+		$request = $this->gateway->purchase(['amount' => '10.00']);
 
 		$this->assertInstanceOf('Omnipay\Curopayments\Message\GiropayPurchaseRequest', $request);
 		$this->assertSame('10.00', $request->getAmount());

@@ -14,7 +14,7 @@ class CompletePurchaseRequest extends AbstractRequest
      */
     public function getData()
     {
-        $this->validate('siteId', 'hashKey', 'amount');
+        $this->validate('currency', 'amount', 'ref');
 
         $postedData = $this->httpRequest->request->all();
         $verifyHash = $this->generateVerificationSignature($postedData);
@@ -24,6 +24,26 @@ class CompletePurchaseRequest extends AbstractRequest
         }
 
         return $postedData;
+    }
+
+    /**
+     * Verify the data came from Curopaymentss
+     *
+     * @param $data
+     *
+     * @return string
+     */
+    public function generateVerificationSignature($data)
+    {
+        return md5(
+                (($this->getTestMode() && !empty($data['is_test']) && $data['is_test'] === '1') ? 'TEST' : '') .
+                $data['transactionid'] .
+                $data['currency'] .
+                $data['amount'] .
+                $data['ref'] .
+                $data['status'] .
+                $this->getSecretKey()
+        );
     }
 
     /**

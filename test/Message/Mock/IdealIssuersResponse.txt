@@ -1,0 +1,8 @@
+HTTP/1.1 304 Not Modified
+Date: Mon, 02 Mar 2015 10:20:22 GMT
+Server: Apache
+Connection: Keep-Alive
+Keep-Alive: timeout=15, max=100
+ETag: "2999b1-153-5103ca3c174c0"
+
+[{"id":"ABNANL2A","name":"ABN Amro Bank"},{"id":"ASNBNL21","name":"ASN Bank"},{"id":"INGBNL2A","name":"ING"},{"id":"KNABNL2H","name":"Knab"},{"id":"RABONL2U","name":"Rabobank"},{"id":"RBRBNL21","name":"RegioBank"},{"id":"SNSBNL2A","name":"SNS Bank"},{"id":"TRIONL2U","name":"Triodos Bank"},{"id":"FVLBNL22","name":"Van Lanschot Bankiers"}]

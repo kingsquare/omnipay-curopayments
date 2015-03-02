@@ -10,53 +10,33 @@ class AbstractRequestTest extends TestCase {
 	public function setUp()
 	{
 		$this->request = m::mock('\Omnipay\Curopayments\Message\AbstractRequest')->makePartial();
-		$this->request->initialize(
-			array(
-				'siteKey' => 'web',
-				'hashKey' => 'secret',
-				'amount' => '12.00',
-				'returnUrl' => 'https://www.example.com/return',
-			)
-		);
+		$this->request->initialize([
+            'secretKey' => 'secret',
+            'siteId' => 'web',
+            'currency' => 'EUR',
+            'amount' => '12.00',
+            'ref' => 'test',
+            'testMode' => true,
+            'returnUrl' => 'https://www.example.com/return',
+        ]);
 	}
 
 	public function testGetData()
 	{
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
-		$this->request->initialize(array(
-				'siteKey' => 'web',
-				'hashKey' => 'secret',
-				'amount' => '12.00',
-				'currency' => 'EUR',
-				'testMode' => true,
-				'transactionId' => 13,
-				'returnUrl' => 'https://www.example.com/return',
-				'cancelUrl' => 'https://www.example.com/cancel',
-		));
 		$data = $this->request->getData();
 
-		$this->assertSame('web', $data['Brq_siteKey']);
-		$this->assertSame('12.00', $data['Brq_amount']);
-		$this->assertSame('EUR', $data['Brq_currency']);
-		$this->assertSame(13, $data['Brq_invoicenumber']);
-		$this->assertSame('https://www.example.com/return', $data['Brq_return']);
-		$this->assertSame('https://www.example.com/cancel', $data['Brq_returncancel']);
+		$this->assertSame('web', $data['siteid']);
+		$this->assertSame(1200, $data['amount']);
+		$this->assertSame('EUR', $data['currency']);
+		$this->assertSame('test', $data['ref']);
+		$this->assertSame('https://www.example.com/return', $data['return_url']);
+		$this->assertSame('https://www.example.com/return', $data['return_url_failed']);
 	}
 
 	public function testGenerateSignature()
 	{
-		$this->markTestIncomplete(
-				'This test has not been implemented yet.'
-		);
-		$this->request->setHashKey('secret');
-		$data = array(
-
-		);
-
-		$expected = sha1('Brq_amount=bBrq_siteKey=asecret');
-		$this->assertSame($expected, $this->request->generateSignature($data));
+        $expected = md5('TEST' . 'web' . 1200 . 'test' . 'secret');
+		$this->assertSame($expected, $this->request->generateSignature());
 	}
 
 	public function testGetEndpoint()

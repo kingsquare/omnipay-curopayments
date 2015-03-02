@@ -25,6 +25,6 @@ class IdealIssuersRequest extends AbstractRequest
         $endpoint = $this->endpoint;
         $httpResponse = $this->httpClient->get($endpoint)->send();
 
-        return $this->response = new IdealIssuersResponse($this, $httpResponse->json());
+        return new IdealIssuersResponse($this, $httpResponse->json());
     }
 }
