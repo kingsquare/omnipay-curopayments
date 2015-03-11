@@ -7,6 +7,8 @@ This is still very much in development! NOT READY FOR ACTUAL USE!
 **Curopayments driver for the Omnipay PHP payment processing library**
 
 [![Build Status](https://travis-ci.org/kingsquare/omnipay-curopayments.png?branch=master)](https://travis-ci.org/kingsquare/omnipay-curopayments)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/kingsquare/omnipay-curopayments/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/kingsquare/omnipay-curopayments/?branch=master)
+[![License](https://poser.pugx.org/kingsquare/omnipay-curopayments/license.svg)](https://packagist.org/packages/kingsquare/omnipay-curopayments)
 
 [Omnipay](https://github.com/thephpleague/omnipay) is a framework agnostic, multi-gateway payment processing library for PHP 5.3+. This package implements Curopayments support for Omnipay.
 
