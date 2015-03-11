@@ -22,4 +22,21 @@ class SepaDirectDebitPurchaseRequestTest extends TestCase
         $data = $this->request->getData();
         $this->assertSame('directdebit', $data['option']);
     }
+
+    public function testGetDataRecurringIsFalse()
+    {
+        $data = $this->request->getData();
+        $this->assertSame(null, $this->request->getRecurring());
+        $this->assertSame(0, $data['recurring']);
+
+        $this->request->setRecurring(true);
+        $data = $this->request->getData();
+        $this->assertSame(true, $this->request->getRecurring());
+        $this->assertSame(1, $data['recurring']);
+
+        $this->request->setRecurring(false);
+        $data = $this->request->getData();
+        $this->assertSame(false, $this->request->getRecurring());
+        $this->assertSame(0, $data['recurring']);
+    }
 }

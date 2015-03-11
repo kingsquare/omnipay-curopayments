@@ -6,6 +6,7 @@ use Omnipay\Common\Message\AbstractResponse;
 
 /**
  * Curopayments Complete Purchase Response
+ * @package Omnipay\Curopayments\Message
  */
 class CompletePurchaseResponse extends AbstractResponse
 {
@@ -111,7 +112,7 @@ class CompletePurchaseResponse extends AbstractResponse
     const RECURRING_WAITING_INTERACTION = 710;
 
     /**
-     * @inheritdoc
+     * @return bool
      */
     public function isSuccessful()
     {
@@ -119,7 +120,7 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @inheritdoc
+     * @return null|string
      */
     public function getCode()
     {
@@ -131,7 +132,7 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @inheritdoc
+     * @return null
      */
     public function getMessage()
     {
@@ -143,7 +144,7 @@ class CompletePurchaseResponse extends AbstractResponse
     }
 
     /**
-     * @inheritdoc
+     * @return null
      */
     public function getTransactionReference()
     {

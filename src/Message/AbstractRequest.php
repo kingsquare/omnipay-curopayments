@@ -6,6 +6,7 @@ use Omnipay\Common\Message\AbstractRequest as OmnipayRequest;
 
 /**
  * Curopayments Abstract Request
+ * @package Omnipay\Curopayments\Message
  */
 abstract class AbstractRequest extends OmnipayRequest
 {
@@ -14,60 +15,104 @@ abstract class AbstractRequest extends OmnipayRequest
      */
     public $endpoint = 'https://gateway.cardgateplus.com/';
 
+    /**
+     * @var string
+     */
     private $returnUrlFailed = '';
 
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setReturnUrlFailed($value)
     {
         $this->returnUrlFailed = $value;
     }
 
+    /**
+     * @return mixed
+     */
     public function getReturnUrlFailed()
     {
         return $this->returnUrlFailed ?: $this->getReturnUrl();
     }
 
+    /**
+     * @return mixed
+     */
     public function getSiteId()
     {
         return $this->getParameter('siteId');
     }
 
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setSiteId($value)
     {
         return $this->setParameter('siteId', $value);
     }
 
+    /**
+     * @return mixed
+     */
     public function getSecretKey()
     {
         return $this->getParameter('secretKey');
     }
 
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setSecretKey($value)
     {
         return $this->setParameter('secretKey', $value);
     }
 
+    /**
+     * @return mixed
+     */
     public function getRef()
     {
         return $this->getParameter('ref');
     }
 
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setRef($value)
     {
         return $this->setParameter('ref', $value);
     }
 
+    /**
+     * @return mixed
+     */
     public function getLanguage()
     {
         return $this->getParameter('language');
     }
 
+    /**
+     * @param string $value
+     *
+     * @return $this
+     */
     public function setLanguage($value)
     {
         return $this->setParameter('language', $value);
     }
 
     /**
-     * @inheritdoc
+     * @return array
+     * @throws \Omnipay\Common\Exception\InvalidRequestException
      */
     public function getData()
     {
@@ -104,15 +149,20 @@ abstract class AbstractRequest extends OmnipayRequest
     }
 
     /**
-     * @inheritdoc
+     * @param mixed $data
+     *
+     * @return PurchaseResponse
      */
     public function sendData($data)
     {
-        $data['hash'] = $this->generateSignature($data);
+        $data['hash'] = $this->generateSignature();
 
-        return $this->response = new PurchaseResponse($this, $data);
+        return new PurchaseResponse($this, $data);
     }
 
+    /**
+     * @return string
+     */
     public function getEndpoint()
     {
         return $this->endpoint;

@@ -4,13 +4,17 @@ namespace Omnipay\Curopayments\Message;
 
 /**
  * Curopayments iDeal Purchase Request
+ * @package Omnipay\Curopayments\Message
  */
 class IdealIssuersRequest extends AbstractRequest
 {
+    /**
+     * @var string
+     */
     public $endpoint = 'https://gateway.cardgateplus.com/cache/idealDirectoryCUROPayments.json';
 
     /**
-     * {@inheritdoc}
+     * @return null
      */
     public function getData()
     {
@@ -18,7 +22,9 @@ class IdealIssuersRequest extends AbstractRequest
     }
 
     /**
-     * {@inheritdoc}
+     * @param mixed $data
+     *
+     * @return IdealIssuersResponse
      */
     public function sendData($data)
     {

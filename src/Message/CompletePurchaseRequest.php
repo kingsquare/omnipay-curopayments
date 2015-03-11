@@ -6,11 +6,13 @@ use \Omnipay\Common\Exception\InvalidRequestException;
 
 /**
  * Curopayments Complete Purchase Request
+ * @package Omnipay\Curopayments\Message
  */
 class CompletePurchaseRequest extends AbstractRequest
 {
     /**
-     * @inheritdoc
+     * @return array
+     * @throws InvalidRequestException
      */
     public function getData()
     {
@@ -52,10 +54,12 @@ class CompletePurchaseRequest extends AbstractRequest
     }
 
     /**
-     * @inheritdoc
+     * @param mixed $data
+     *
+     * @return CompletePurchaseResponse
      */
     public function sendData($data)
     {
-        return $this->response = new CompletePurchaseResponse($this, $data);
+        return new CompletePurchaseResponse($this, $data);
     }
 }

@@ -4,11 +4,12 @@ namespace Omnipay\Curopayments;
 
 /**
  * Curopayments iDeal Gateway
+ * @package Omnipay\Curopayments
  */
 class IdealGateway extends AbstractGateway
 {
     /**
-     * {@inheritdoc}
+     * @return string
      */
     public function getName()
     {

@@ -4,11 +4,12 @@ namespace Omnipay\Curopayments\Message;
 
 /**
  * Curopayments iDeal Purchase Request
+ * @package Omnipay\Curopayments\Message
  */
 class IdealPurchaseRequest extends AbstractRequest
 {
     /**
-     * {@inheritdoc}
+     * @return mixed
      */
     public function getData()
     {

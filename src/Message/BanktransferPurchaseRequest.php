@@ -4,11 +4,12 @@ namespace Omnipay\Curopayments\Message;
 
 /**
  * Curopayments Bank transfer Purchase Request
+ * @package Omnipay\Curopayments\Message
  */
 class BanktransferPurchaseRequest extends AbstractRequest
 {
     /**
-     * @inheritdoc
+     * @return array
      */
     public function getData()
     {
