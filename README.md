@@ -48,3 +48,6 @@ If you believe you have found a bug, please report it using the [GitHub issue tr
 ## Open issues
 
 There are still some quirks and open issues for this package. (i.e. the implementation of recurring payments etc)
+
+# State of affairs
+Currently this code mostly works but there are plans to migrate this into a new build of the code. If you have any experience in either Curo or Omnipay gateways please contact us for further development!
